@@ -1,0 +1,27 @@
+<!-- templates/results_by_lga.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Results by LGA</title>
+</head>
+<body>
+    <h1>Total Results by Local Government Area</h1>
+
+    <form method="get" action="{% url 'results_by_lga' %}">
+        <label for="lga_id">Select LGA:</label>
+        <select name="lga_id" id="lga_id">
+            <option value="">-- Select LGA --</option>
+            {% for lga in lgas %}
+                <option value="{{ lga.lga_id }}">{{ lga.lga_id }}</option>
+            {% endfor %}
+        </select>
+        <button type="submit">Get Results</button>
+    </form>
+
+    {% if total_score %}
+        <h2>Total Score: {{ total_score }}</h2>
+    {% endif %}
+</body>
+</html>
